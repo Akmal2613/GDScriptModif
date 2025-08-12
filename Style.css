@@ -1,0 +1,123 @@
+:root{
+  --bg-dark:#0f1724;
+  --panel-dark:#111827;
+  --muted-dark:#94a3b8;
+  --accent:#38bdf8;
+  --ok:#4ade80;
+
+  --bg-light:#f8fafc;
+  --panel-light:#ffffff;
+  --muted-light:#475569;
+  --accent-light:#0284c7;
+  --ok-light:#16a34a;
+}
+
+/* default layout */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, system-ui, Arial, sans-serif}
+body{display:flex;flex-direction:column; background:var(--bg); color:var(--text)}
+
+/* Topbar */
+.topbar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 20px;
+  gap:12px;
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  background:var(--panel-bg);
+}
+.title h1{margin:0;font-size:20px}
+.subtitle{margin:2px 0 0;font-size:13px;color:var(--muted)}
+
+/* Controls */
+.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.controls label{font-size:13px;color:var(--muted)}
+.controls select{margin-left:6px;padding:6px;border-radius:6px;border:1px solid rgba(0,0,0,0.08)}
+.chk{display:flex;align-items:center;gap:6px}
+button.small{padding:6px 8px;border-radius:6px;border:0;background:rgba(0,0,0,0.08);cursor:pointer}
+
+/* Main layout */
+main{display:flex;gap:18px;flex:1;padding:18px;max-width:1100px;margin:12px auto;width:100%}
+.pane{flex:1;min-width:320px}
+.pane h2{margin:0 0 8px 0;font-size:16px}
+textarea{
+  width:100%;
+  min-height:300px;
+  padding:12px;
+  resize:vertical;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.08);
+  font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+  font-size:13px;
+  line-height:1.4;
+  color:var(--text);
+  background:var(--panel-bg);
+  box-shadow:0 1px 0 rgba(255,255,255,0.02) inset;
+}
+.toolbar{display:flex;gap:8px;margin-top:8px}
+button{padding:8px 12px;border-radius:8px;border:0;cursor:pointer}
+button.primary{background:var(--accent-btn);color:var(--accent-fore);font-weight:600}
+button:hover{opacity:0.95}
+
+.hint{margin-top:8px;font-size:12px;color:var(--muted)}
+
+.log{
+  margin-top:10px;
+  padding:12px;
+  border-radius:8px;
+  background:rgba(0,0,0,0.03);
+  min-height:60px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* Footer */
+.footer{text-align:center;padding:12px;font-size:13px;border-top:1px solid rgba(0,0,0,0.05);color:var(--muted)}
+
+/* Modal Kamus */
+.modal{
+  position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);z-index:9999;
+}
+.modal[aria-hidden="false"]{display:flex}
+.modal-content{width:90%;max-width:900px;background:var(--panel-bg);border-radius:12px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.modal-actions{display:flex;gap:8px;align-items:center}
+.modal-actions input{padding:8px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);min-width:220px}
+
+/* Kamus list */
+.kamus-list{max-height:60vh;overflow:auto;padding:6px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.kamus-item{background:rgba(0,0,0,0.03);padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.04)}
+.kamus-item h4{margin:0 0 6px 0;font-size:14px}
+.kamus-item p{margin:0;font-size:13px;color:var(--muted);line-height:1.35}
+.kamus-item .example{margin-top:8px;font-family:ui-monospace, monospace;background:rgba(0,0,0,0.04);padding:8px;border-radius:6px;font-size:12px;color:var(--text)}
+
+/* Light theme */
+:root[data-theme="light"]{
+  --panel-bg:var(--panel-light);
+  --bg:var(--bg-light);
+  --muted:var(--muted-light);
+  --accent-btn:var(--accent-light);
+  --accent-fore:#fff;
+  --text:#0b1220;
+  --ok:var(--ok-light);
+}
+:root[data-theme="light"] body, :root[data-theme="light"] textarea { background:var(--bg); }
+
+/* Dark theme (default) */
+:root[data-theme="dark"]{
+  --panel-bg:var(--panel-dark);
+  --bg:var(--bg-dark);
+  --muted:var(--muted-dark);
+  --accent-btn:var(--accent);
+  --accent-fore:#000;
+  --text:#e6eef8;
+  --ok:var(--ok);
+}
+:root[data-theme="dark"] body, :root[data-theme="dark"] textarea { background:var(--panel-bg); }
+
+@media (max-width:900px){
+  main{flex-direction:column;padding:12px}
+  .kamus-list{grid-template-columns:1fr}
+}

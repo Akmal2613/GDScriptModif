@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GDScript Translator (ID ↔ GD)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="title">
+      <h1>GDScript Translator</h1>
+      <p class="subtitle">Bahasa Indonesia ↔ GDScript — Pilih versi Godot, tema, dan convert langsung.</p>
+    </div>
+
+    <div class="controls">
+      <label>
+        Arah:
+        <select id="direction" title="Pilih arah terjemahan">
+          <option value="id-to-gd">Bahasa Indonesia → GDScript</option>
+          <option value="gd-to-id">GDScript → Bahasa Indonesia</option>
+        </select>
+      </label>
+
+      <label>
+        Versi Godot:
+        <select id="version" title="Pilih versi target Godot (pengaturan token)">
+          <option value="universal">Universal</option>
+          <option value="3.x">Godot 3.x</option>
+          <option value="4.x">Godot 4.x</option>
+        </select>
+      </label>
+
+      <label>
+        Tema:
+        <select id="theme" title="Dark / Light">
+          <option value="dark">Dark Minimalis</option>
+          <option value="light">Light Minimalis</option>
+        </select>
+      </label>
+
+      <label class="chk">
+        <input type="checkbox" id="autofix" checked />
+        Auto-fix
+      </label>
+
+      <button id="kamusBtn" class="small">Kamus</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="pane">
+      <h2>Kode Input (ketik di sini)</h2>
+      <textarea id="inputCode" placeholder="Contoh (ID):&#10;jika pemain_menyentuh_koin:&#10;    tambah_skor(10)"></textarea>
+      <div class="hint">Shortcuts: <strong>Ctrl/⌘ + Enter</strong> = Convert, <strong>Ctrl/⌘ + Shift + C</strong> = Copy</div>
+    </section>
+
+    <section class="pane">
+      <h2>Hasil Output</h2>
+      <textarea id="outputCode" readonly placeholder="Hasil konversi akan muncul di sini..."></textarea>
+      <div class="toolbar">
+        <button id="convertBtn" class="primary">Convert</button>
+        <button id="copyBtn">Copy</button>
+      </div>
+
+      <h3>Log & Saran</h3>
+      <div id="logOutput" class="log">Tidak ada peringatan.</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Made by ChatGPT | Idea from Akmal — Host di GitHub Pages
+  </footer>
+
+  <!-- Modal Kamus -->
+  <div id="kamusModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h3>Kamus & Contoh Pemakaian</h3>
+        <div class="modal-actions">
+          <input id="kamusSearch" type="search" placeholder="Cari kata atau fungsi..." />
+          <button id="kamusClose" class="small">Tutup</button>
+        </div>
+      </header>
+      <div id="kamusList" class="kamus-list" role="region" aria-live="polite">
+        <!-- daftar kamus akan dirender di sini -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+                                                                                               </html>
